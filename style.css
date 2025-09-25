@@ -1,0 +1,603 @@
+/* Pengaturan global */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    padding-top: 60px; /* Sesuaikan nilai ini dengan tinggi header */
+}
+/* Navigasi Atas */
+#navbar-top {
+    /* Properti Fixed untuk selalu di atas */
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    z-index: 1000;
+    
+    /* Styling Dasar Header */
+    background-color: #333; /* Warna latar gelap */
+    color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5); 
+    padding: 10px 0; /* Padding vertikal saja */
+}
+
+.header-container {
+    display: flex;
+    /* PENTING: Memisahkan logo ke kiri dan menu ke kanan */
+    justify-content: space-between; 
+    align-items: center;
+    max-width: 1200px; /* Batasi lebar container utama */
+    margin: 0 auto; /* Memusatkan container di tengah layar */
+    padding: 0 20px; /* Padding di sisi untuk layar yang lebih kecil */
+}
+
+/* Memastikan Logo di Kiri */
+.logo-area {
+    /* Agar logo menempel ke kiri container */
+    margin-right: auto; 
+}
+
+/* Memusatkan Teks Menu */
+#navbar-top nav {
+    /* Navigasi mengambil sisa ruang yang tersedia */
+    flex-grow: 1; 
+    /* Menggunakan text-align: center untuk memusatkan blok teks/inline */
+    text-align: center;
+}
+
+#navbar-top ul {
+    list-style: none;
+    display: inline-flex; /* PENTING: Gunakan inline-flex agar ul bisa dipusatkan oleh text-align: center di elemen parent-nya */
+    margin: 0;
+    padding: 0;
+}
+
+#navbar-top ul li a {
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 10px; 
+    display: block;
+    font-size: 13px; 
+    white-space: nowrap; 
+}
+
+#navbar-top ul li a:hover {
+    color: #ffb300;
+}
+ 
+
+/* Tambahkan sedikit hover effect */
+#navbar-top ul li a:hover {
+    color: #ffb300; /* Kuning saat di-hover */
+}
+
+/* CATATAN PENTING: Penyesuaian Body */
+/* Karena header kini 'fixed', ia tidak lagi memakan ruang. Konten berikutnya akan bersembunyi di bawahnya. */
+/* Kita perlu menambahkan padding di body (atau di elemen pertama setelah header) agar konten tidak tertutup. */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding-top: 60px; /* Nilai padding harus sesuai dengan tinggi header Anda */
+    background-color: #f4f4f4; 
+    color: #333;
+}
+
+/* Banner Selamat Datang (Warna latar gelap dengan foto gedung) */
+/* BANNER SELAMAT DATANG (Sesuai Screenshot 143326.jpg) */
+#welcome-banner {
+    /* PENTING: Gunakan background-image untuk gambar */
+    background: url('backg.jpg') no-repeat center center/cover;
+    
+    color: #fff;
+    padding: 150px 5%; 
+    min-height: 500px; /* Tambahkan tinggi agar gambar terlihat */
+    position: relative;
+    display: flex; /* Untuk memposisikan konten di dalam */
+    align-items: center;
+}
+
+/* Overlay gelap agar teks terbaca */
+.dark-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* PENTING: Tambahkan gradient atau warna gelap */
+    background-color: rgba(0, 0, 0, 0.6); 
+    /* Gradient agar bawahnya lebih gelap (sesuai gambar) */
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8));
+    z-index: 1;
+}
+
+.content-overlay {
+    position: relative;
+    z-index: 2; /* Pastikan teks di atas overlay */
+    max-width: 700px; /* Batas lebar teks */
+    text-align: left;
+}
+
+#welcome-banner h1 {
+    font-size: 24px;
+    font-weight: normal;
+    margin-bottom: 5px;
+}
+
+#welcome-banner h2 {
+    color: #ffb300; /* Warna kuning khas */
+    font-size: 48px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+#welcome-banner p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+/* Statistik Bar (Bagian Kuning) */
+#stats-bar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #ffb300; /* Kuning/Orange terang */
+    color: #fff;
+    padding: 30px 5%;
+    text-align: center;
+}
+
+.stat-item .count {
+    font-size: 48px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+.stat-item p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Konten Utama */
+#main-content {
+    padding: 40px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Identitas Sekolah */
+#school-identity {
+    margin-bottom: 40px;
+}
+
+.identity-data td {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.tabs button {
+    background-color: transparent;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #999;
+}
+
+.tabs button.active {
+    color: #333;
+    border-bottom: 2px solid #ffb300;
+}
+
+/* Banner Gabung (Screenshot 143347.jpg) */
+#latest-news-join {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.section-title-center {
+    font-size: 24px;
+    font-weight: bold;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+/* Garis kuning di bawah Berita Terbaru */
+.section-title-center::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 60px;
+    height: 3px;
+    background-color: #ffb300;
+}
+
+/* Gaya untuk bagian BERBUDAYA dan INOVATIF */
+#pusat-keunggulan {
+    margin-top: 60px;
+    padding-bottom: 60px;
+    text-align: center;
+}
+
+.top-titles {
+    display: flex;
+    justify-content: space-around;
+    padding: 0 5%;
+    margin-bottom: 40px;
+}
+
+.title-item h2 {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    padding-bottom: 5px;
+    border-bottom: 3px solid #ffb300; /* Garis kuning/oranye di bawah judul */
+    display: inline-block;
+}
+
+.title-item:last-child h2 {
+    /* Hanya untuk judul INOVATIF, menyesuaikan posisi garis */
+    border-color: #ffb300; 
+}
+
+.title-item p {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Gaya untuk Judul Atas (Berbudaya & Inovatif) */
+.top-titles-exact {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Agar elemen sejajar di atas */
+    position: relative;
+}
+
+.date-info {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 12px;
+    color: #666;
+}
+
+.title-item {
+    text-align: center;
+    padding-top: 50px; /* Jarak dari atas */
+}
+
+.title-item.inovatif {
+    margin-left: auto; /* Memastikan INOVATIF di kanan */
+    padding-right: 20px;
+}
+
+.title-item h2 {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    padding-bottom: 5px;
+    /* Menghilangkan garis di bawah BERBUDAYA (tidak ada di screenshot baru) */
+}
+.title-item.inovatif h2 {
+    /* Menambahkan font kecil berwarna oranye di INOVATIF */
+    color: #333;
+}
+
+.title-item p {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+}
+
+
+/* Area Utama dengan Latar Biru Muda (mirip screenshot) */
+.keahlian-main-area {
+    background-color: #f7f9fd; /* Warna biru muda yang lembut */
+    padding: 30px 0;
+}
+
+.title-left {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    padding-left: 5%;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+/* Pengaturan Grid untuk Tiga Kolom (Kiri, Divider, Kanan) */
+.keahlian-grid {
+    display: grid;
+    /* Menggunakan 3 kolom: 45% (kiri), 5% (divider), 50% (kanan) */
+    grid-template-columns: 45% 5% 50%; 
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.grid-left {
+    padding-left: 5%;
+}
+
+.grid-left h4 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.action-plan {
+    padding-top: 15px; /* Jarak dari Rencana Aksi */
+}
+
+.action-plan h5 {
+    font-style: italic;
+    color: #666;
+    font-weight: normal;
+    margin-bottom: 15px;
+}
+
+/* Gaya List Item */
+.action-plan ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.action-plan ul li {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 18px;
+}
+
+/* Bullet Point Kuning/Oranye */
+.action-plan ul li::before {
+    content: ''; 
+    background-color: #ffb300; /* Oranye/Kuning */
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    top: 7px;
+}
+
+/* Garis Pembatas Vertikal di Tengah */
+.grid-center-divider {
+    position: relative;
+}
+
+.grid-center-divider::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    /* Garis harus panjang dari atas ke bawah */
+    bottom: -150px; /* Diperpanjang ke bawah agar terlihat seperti screenshot */
+    width: 2px;
+    background-color: #ffb300; /* Garis Oranye/Kuning */
+    transform: translateX(-50%);
+}
+
+.divider-text-unggulan {
+    position: absolute; /* Menggunakan absolute agar posisinya tepat */
+    top: 50px; /* Jarak dari atas */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff; /* Latar putih agar menutupi garis */
+    padding: 10px 5px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    line-height: 1.4;
+    font-size: 14px;
+    white-space: nowrap; /* Mencegah teks terpotong */
+}
+
+
+
+/* Gaya untuk Judul "Berita Terbaru" (diambil dari kode sebelumnya) */
+#latest-news-join {
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px; 
+}
+
+.section-title-center {
+    font-size: 24px;
+    font-weight: bold;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+/* Garis kuning di bawah Berita Terbaru */
+.section-title-center::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 60px;
+    height: 3px;
+    background-color: #ffb300;
+}
+
+/* KOTAK BANNER GABUNG */
+.join-banner {
+    display: flex;
+    justify-content: center;
+    align-items: stretch; /* Memastikan kedua kolom memiliki tinggi yang sama */
+    max-width: 1500px; /* Batasi lebar banner agar terlihat proporsional */
+    margin: 30px auto 50px auto;
+    background-color: #fff;
+    /* Memberikan efek melayang sedikit di atas (sesuai gambar) */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); 
+    position: relative;
+    overflow: hidden; /* Penting untuk mengontrol latar belakang kuning */
+}
+
+/* Sisi Kiri: Teks Area */
+.join-banner .text-area {
+    padding: 30px 40px;
+    flex: 1; /* Mengambil proporsi lebar yang sama dengan image-area */
+    text-align: left;
+    background-color: #fff;
+    z-index: 2; /* Pastikan teks di atas latar belakang kuning jika tumpang tindih */
+}
+
+.join-banner .text-area h3 {
+    /* Warna merah marun dan font yang lebih tebal */
+    color: #c62828; 
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    line-height: 1.1;
+}
+
+.join-banner .text-area .motto {
+    margin-top: 10px;
+}
+
+/* Sisi Kanan: Image Area (dengan latar belakang kuning) */
+.join-banner .image-area {
+    flex: 1; /* Mengambil proporsi lebar yang sama */
+    position: relative;
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Membuat Bentuk Kurva Kuning/Oranye */
+.join-banner .image-area::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -100px; /* Geser ke kanan agar hanya sebagian yang terlihat */
+    width: 600px; /* Ukuran besar untuk lingkaran */
+    height: 600px;
+    background-color: #ffb300; /* Warna kuning oranye */
+    border-radius: 50%; /* Membuat lingkaran */
+    z-index: 1;
+}
+
+/* Memposisikan Gambar Siswa di atas Kurva Kuning */
+.join-banner .image-area img {
+    /* Tinggi gambar siswa 300px sudah ditetapkan di HTML inline, ini agar dia ada di atas lingkaran */
+    position: relative; 
+    z-index: 2; 
+    /* Mengatur margin atau posisi agar gambar berada di area yang tepat di kurva */
+    top: 0;
+    /* Lebar gambar siswa perlu disesuaikan agar tidak terlalu besar */
+    height: auto !important; /* Batalkan height 300px dari inline style */
+    max-height: 100%;
+    max-width: 100%;
+}
+
+
+/* FOOTER */
+/* FOOTER (Sesuai Screenshot 143352.jpg) */
+#main-footer {
+    /* PENTING: Gunakan gambar yang sama sebagai background */
+    background: url('backg.jpg') no-repeat center center/cover;
+    
+    color: #fff;
+    padding-top: 50px;
+    position: relative;
+    z-index: 1; /* Pastikan konten footer di atas latar belakang */
+}
+
+/* Membuat OVERLAY SANGAT GELAP untuk Footer */
+#main-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* Overlay gelap yang sangat pekat (mendekati hitam) */
+    background-color: rgba(0, 0, 0, 0.9); 
+    z-index: 2; /* Di bawah konten footer, di atas gambar */
+}
+
+/* Memastikan semua konten footer berada di atas overlay gelap */
+.footer-content, 
+.map-area,
+.copyright {
+    position: relative;
+    z-index: 3;
+}
+
+/* Penyesuaian Gaya Konten Footer (dibuat lebih jelas di atas overlay) */
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5% 30px;
+    border-bottom: 1px solid #444;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-section h4 {
+    color: #ffb300; /* Kuning */
+    margin-bottom: 20px;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li a {
+    color: #ccc;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+/* Area Peta (Placeholder) */
+.map-area {
+    padding: 20px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.map-placeholder {
+    background-color: #444;
+    min-height: 300px;
+    text-align: center;
+    padding-top: 140px;
+    color: #ccc;
+    font-style: italic;
+}
+
+.map-area {
+    padding: 20px 5%;
+}
+
+.map-placeholder {
+    background-color: #444;
+    min-height: 300px;
+    text-align: center;
+    padding-top: 140px;
+    color: #ccc;
+    font-style: italic;
+}
+
+.copyright {
+    background-color: #222;
+    text-align: center;
+    padding: 10px;
+    font-size: 12px;
+}
+
+/* Tambahkan media queries untuk responsif, jika diperlukan */
+/* @media (max-width: 768px) { ... } */
