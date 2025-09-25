@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SMK Negeri 7 Batam - Website Sekolah</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; }
     </style>
@@ -12,28 +16,82 @@
 <body>
 
     <header id="navbar-top">
-    <div class="header-container"> 
-        <div class="logo-area">
-            <img src="https://smknegeri7batam.sch.id/assets/Logo-Skaju%201.png" alt="Logo SMK Negeri 7 Batam" style="height: 40px;">
+        <div class="header-container">
+            <div class="logo-area">
+                <!-- Logo dibungkus link agar bisa diklik untuk kembali ke home -->
+                <a href="#">
+                    <img src="https://smknegeri7batam.sch.id/assets/Logo-Skaju%201.png" alt="Logo SMK Negeri 7 Batam" id="logo-img">
+                </a>
+            </div>
+    
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    
+                    <li class="has-submenu">
+                        <a href="#">Profil <span class="arrow-down"></span></a>
+                        <ul class="submenu">
+                            <li><a href="#">Visi Misi</a></li>
+                            <li><a href="#">Sejarah</a></li>
+                            <li><a href="#">Struktur Organisasi</a></li>
+                            <li><a href="#">Sarana dan Prasarana</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="has-submenu">
+                        <a href="#">Program <span class="arrow-down"></span></a>
+                        <ul class="submenu">
+                            <li><a href="#">Program Unggulan</a></li>
+                            <li><a href="#">Ekstrakurikuler</a></li>
+                            <li><a href="#">Bursa Kerja Khusus (BKK)</a></li>
+                        </ul>
+                    </li>
+            
+                    <li class="has-submenu">
+                        <a href="#">Konsentrasi Keahlian <span class="arrow-down"></span></a>
+                        <ul class="submenu">
+                            <li><a href="#">TKJ</a></li>
+                            <li><a href="#">RPL</a></li>
+                            <li><a href="#">AKL</a></li>
+                            <li><a href="#">TKR</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li><a href="#">GTK dan Siswa</a></li>
+            
+                    <li><a href="#">SarPras</a></li>
+                    
+                    <li class="has-submenu">
+                        <a href="#">Kegiatan <span class="arrow-down"></span></a>
+                        <ul class="submenu">
+                            <li><a href="#">Kegiatan Sekolah</a></li>
+                            <li><a href="#">Agenda</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="has-submenu">
+                        <a href="#">Galeri <span class="arrow-down"></span></a>
+                        <ul class="submenu">
+                            <li><a href="#">Foto</a></li>
+                            <li><a href="#">Video</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li><a href="#">Berita</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Kontak</a></li>
+                    <li><a href="#">Login</a></li>
+                </ul>
+            </nav>
+    
+            <!-- Tombol Hamburger untuk Mobile -->
+            <button class="hamburger" id="hamburger-menu" aria-label="Toggle menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
         </div>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Profil</a></li>
-                <li><a href="#">Program</a></li>
-                <li><a href="#">Konsentrasi Keahlian</a></li>
-                <li><a href="#">GTK dan Siswa</a></li>
-                <li><a href="#">SarPras</a></li>
-                <li><a href="#">Kegiatan</a></li>
-                <li><a href="#">Galeri</a></li>
-                <li><a href="#">Berita</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Kontak</a></li>
-                <li><a href="#">Login</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
+    </header>
 
     <section id="welcome-banner" class="dark-overlay">
         <div class="content-overlay">
@@ -65,7 +123,6 @@
     <main id="main-content">
 <section id="school-identity">
     <div class="school-identity-container">
-        <h4 class="sidebar-title">Kepala SMK Negeri 7 Batam</h4> 
         
         <h3>IDENTITAS SEKOLAH</h3>
         
@@ -87,11 +144,31 @@
             <tr><td>SK Izin Operasional:</td><td>KPTS.56.1/Hk/IV/2014</td></tr>
             <tr><td>Tanggal SK Izin Operasional:</td><td>2015-10-23</td></tr>
         </table>
+        
+        <table class="identity-data tab-content" id="tab-kontak">
+            <tr><td>Alamat:</td><td>Perum Sekawan Pemko</td></tr>
+            <tr><td>RT / RW:</td><td>3 / 41</td></tr>
+            <tr><td>Dusun:</td><td>Belian</td></tr>
+            <tr><td>Desa / Kelurahan:</td><td>Belian</td></tr>
+            <tr><td>Kecamatan:</td><td>Batam Kota</td></tr>
+            <tr><td>Kabupaten / Kota:</td><td>Batam</td></tr>
+            <tr><td>Provinsi:</td><td>Kepulauan Riau</td></tr>
+            <tr><td>Kode Pos:</td><td>29463</td></tr>
+            <tr><td>Lintang / Bujur:</td><td>1 / 104</td></tr>
+        </table>
+
+        <table class="identity-data tab-content" id="tab-ketersediaan">
+            <tr><td>Sumber Listrik:</td><td>PLN</td></tr>
+            <tr><td>Daya Listrik:</td><td>10500</td></tr>
+            <tr><td>Kecepatan Internet:</td><td>500 Mb</td></tr>
+            <tr><td>Status BOS:</td><td>Bersedia Menerima</td></tr>
+            <tr><td>Waktu Penyelenggaraan:</td><td>-</td></tr>
+            <tr><td>Sertifikasi ISO:</td><td>Belum Bersertifikat</td></tr>
+        </table>
     </div>
 </section>
 <section id="pusat-keunggulan-exact">
     <div class="top-titles-exact">
-        <div class="date-info">Tanggal SK Izin Operasional : 2015-10-23</div>
         <div class="title-item">
             <h2>BERBUDAYA</h2>
             <p>Diverse Ethnicities and Religions</p>
@@ -130,7 +207,6 @@
                 </div>
         </div>
     </div>
-</section>
         <section id="latest-news-join">
             <h2 class="section-title-center">Berita Terbaru</h2>
             <div class="join-banner">
@@ -150,8 +226,7 @@
         <div class="footer-content">
             <div class="footer-logo">
                 <img src="https://smknegeri7batam.sch.id/assets/Logo-Skaju%201.png" alt="Logo SMK 7" style="width: 150px;">
-                <p>SMK NEGERI 7</p>
-                <p>BATAM</p>
+
                 </div>
             <div class="footer-section">
                 <h4>Navigasi</h4>
@@ -178,8 +253,17 @@
         </div>
 
         <div class="map-area">
-            <div class="map-placeholder">Gunakan *scroll* + *ctrl* untuk memperbesar atau memperkecil peta</div>
+            <!-- Peta Google Maps untuk SMK Negeri 7 Batam -->
+           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19893.61624672537!2d104.0892366176339!3d1.1110178764681335!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d988b07c424207%3A0x9ca1222640c2273a!2sSMK%20Negeri%207%20Batam!5e0!3m2!1sid!2sid!4v1758807766960!5m2!1sid!2sid" 
+                width="100%" 
+                height="450" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
         </div>
+        
 
         <div class="copyright">
             </div>

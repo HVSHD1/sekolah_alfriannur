@@ -6,70 +6,286 @@ body {
     color: #333;
     padding-top: 60px; /* Sesuaikan nilai ini dengan tinggi header */
 }
+/* Font dasar untuk seluruh halaman (Isi) */
+/* BANNER SELAMAT DATANG */
+#welcome-banner {
+    /* Jarak atas dan bawah lebih besar */
+    padding: 180px 5% 120px 5%; 
+    min-height: 550px; /* Tingkatkan tinggi agar sesuai dengan gambar */
+}
+
+.content-overlay {
+    max-width: 750px; /* Sedikit lebih lebar */
+    margin-left: 5%; /* Dorong ke kanan sedikit dari tepi */
+}
+
+#welcome-banner h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    font-weight: 400; /* Sedang, tidak terlalu tebal */
+    margin-bottom: 5px;
+}
+
+#welcome-banner h2 {
+    font-family: 'Poppins', sans-serif;
+    color: #ffb300; /* Kuning khas */
+    font-size: 56px; /* Lebih besar dari sebelumnya */
+    font-weight: 900; /* Paling tebal (Extra-bold/Black) */
+    margin-top: 0;
+    margin-bottom: 25px;
+    line-height: 1; /* Pastikan tidak ada spasi berlebih */
+}
+
+#welcome-banner p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+/* Garis vertikal kuning di samping teks (sesuai screenshot 143326.jpg) */
+.content-overlay::before {
+    content: '';
+    position: absolute;
+    top: 5px; /* Sesuaikan posisi awal garis */
+    left: -40px; /* Posisikan di luar konten teks */
+    width: 4px; /* Ketebalan garis */
+    height: 100%;
+    background-color: #ffb300;
+}
 /* Navigasi Atas */
 #navbar-top {
-    /* Properti Fixed untuk selalu di atas */
     position: fixed; 
     top: 0; 
     left: 0; 
     width: 100%; 
-    z-index: 1000;
+    z-index: 2000; /* Prioritas tertinggi */
+    padding: 15px 0; /* Padding lebih besar */
     
-    /* Styling Dasar Header */
-    background-color: #333; /* Warna latar gelap */
-    color: #fff;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.5); 
-    padding: 10px 0; /* Padding vertikal saja */
+    /* Transisi agar perubahan warna terlihat halus */
+    transition: background-color 0.4s ease, box-shadow 0.4s ease;
 }
 
+/* Kondisi Awal: Transparan di Top of Page */
+#navbar-top.transparent {
+    background-color: transparent; 
+    box-shadow: none;
+}
+#navbar-top.transparent a {
+    color: #fff; /* Teks Putih */
+}
+
+/* Kondisi Setelah Scroll: Solid Putih */
+#navbar-top.scrolled {
+    background-color: #fff; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    /* Menambahkan lengkungan di bawah */
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+#navbar-top.scrolled a {
+    color: #333; /* Teks Hitam */
+}
+/* Atur tinggi logo agar konsisten */
+#logo-img {
+    height: 40px;
+    transition: content 0.4s ease; /* Animasi halus saat logo berubah */
+}
+/* Ubah logo ke versi hitam saat scrolled (jika ada) */
+#navbar-top.scrolled #logo-img {
+    /* Ganti dengan path logo versi gelap Anda jika ada */
+    content: url('logo-smkn7-hitam.png'); 
+}
+
+
+/* Struktur Kontainer Header */
 .header-container {
     display: flex;
-    /* PENTING: Memisahkan logo ke kiri dan menu ke kanan */
-    justify-content: space-between; 
+    justify-content: space-between;
     align-items: center;
-    max-width: 1200px; /* Batasi lebar container utama */
-    margin: 0 auto; /* Memusatkan container di tengah layar */
-    padding: 0 20px; /* Padding di sisi untuk layar yang lebih kecil */
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 0 20px; 
 }
 
+/* Menu Desktop (default) */
+#main-nav > ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    justify-content: center; /* Memusatkan item menu di dalam flex container */
+}
+
+#main-nav ul li {
+    position: relative;
+}
+
+/* Tampilkan panah di samping menu yang punya submenu */
+.arrow-down {
+    display: inline-block;
+    border: solid #fff; /* Warna awal putih untuk header transparan */
+    border-width: 0 2px 2px 0;
+    padding: 3px;
+    margin-left: 8px; /* Jarak dari teks menu */
+    transform: rotate(45deg); /* Arah panah ke bawah */
+    transition: transform 0.3s ease, border-color 0.4s ease;
+}
+
+/* Sembunyikan submenu di desktop secara default */
+.has-submenu > .submenu {
+    display: none; /* Sembunyikan submenu di desktop secara default */
+    position: absolute;
+    top: 100%; /* Turun ke bawah menu utama */
+    left: 0;
+    min-width: 200px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    padding: 10px 0;
+    list-style: none;
+}
+
+/* Hapus aturan hover, ganti dengan aturan berbasis class dari JS */
+/* .has-submenu:hover > .submenu {
+    display: block; 
+} */
+
+/* Tampilkan submenu ketika class .submenu-open ditambahkan */
+.has-submenu.submenu-open > .submenu {
+    display: block;
+}
+/* Putar panah ketika submenu terbuka */
+.has-submenu.submenu-open > a > .arrow-down {
+    transform: rotate(225deg); /* Arah panah ke atas */
+}
+
+.submenu a {
+    padding: 10px 15px;
+    color: #333 !important; /* Pastikan teks submenu selalu hitam */
+    font-size: 14px;
+    display: block;
+}
+.submenu a:hover {
+    background-color: #f7f7f7;
+}
+
+/* Ubah warna panah saat header di-scroll */
+#navbar-top.scrolled .arrow-down {
+    border-color: #333; /* Warna hitam untuk header putih */
+}
+/* Sembunyikan Hamburger di Desktop */
+.hamburger {
+    display: none; 
+}
+
+/* Gaya Mobile */
+@media (max-width: 900px) { /* Titik Rerata (breakpoint) untuk Mobile */
+    
+    /* Tampilkan Hamburger */
+    .hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 30px;
+        height: 25px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 3000;
+    }
+    .bar {
+        width: 100%;
+        height: 3px;
+        background-color: #999; /* Garis abu-abu */
+        transition: all 0.3s linear;
+        transform-origin: 1px;
+    }
+
+    /* Sembunyikan Menu Navigasi di Mobile (Default) */
+    #main-nav {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #fff; /* Latar Putih Full-Screen */
+        z-index: 2500;
+        padding-top: 80px;
+        overflow-y: auto; /* Scrollable jika menu terlalu panjang */
+    }
+
+    /* Tampilkan Navigasi ketika 'menu-open' */
+    #main-nav.menu-open {
+        display: block;
+    }
+
+    /* Gaya List Menu Mobile */
+    #main-nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0 40px;
+        width: auto;
+    }
+    #main-nav ul li {
+        width: 100%;
+        border-bottom: 1px solid #eee;
+    }
+    #main-nav ul li a {
+        color: #333 !important;
+        font-size: 18px;
+        padding: 15px 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Tampilkan panah ke bawah di Mobile */
+    .arrow-down {
+        display: inline-block;
+        border: solid #333;
+        border-width: 0 2px 2px 0;
+        padding: 3px;
+        transform: rotate(45deg);
+        transition: transform 0.3s;
+    }
+
+    /* Atur ulang gaya submenu untuk mobile */
+    .has-submenu > .submenu {
+        position: static; /* Hilangkan posisi absolut */
+        width: 100%;
+        padding: 0 0 10px 20px;
+        background-color: #f7f7f7;
+        box-shadow: none;
+        border-bottom: none;
+        display: none; /* Pastikan tetap tersembunyi secara default */
+    }
+    .has-submenu > .submenu a {
+        font-size: 16px;
+        padding: 10px 0;
+    }
+}
 /* Memastikan Logo di Kiri */
 .logo-area {
     /* Agar logo menempel ke kiri container */
     margin-right: auto; 
 }
 
-/* Memusatkan Teks Menu */
-#navbar-top nav {
-    /* Navigasi mengambil sisa ruang yang tersedia */
-    flex-grow: 1; 
-    /* Menggunakan text-align: center untuk memusatkan blok teks/inline */
-    text-align: center;
-}
-
-#navbar-top ul {
-    list-style: none;
-    display: inline-flex; /* PENTING: Gunakan inline-flex agar ul bisa dipusatkan oleh text-align: center di elemen parent-nya */
-    margin: 0;
-    padding: 0;
-}
-
-#navbar-top ul li a {
+/* Perbaiki selektor agar hanya menargetkan link di menu utama, bukan di submenu */
+#main-nav > ul > li > a {
     text-decoration: none;
-    color: #fff;
     padding: 10px 10px; 
     display: block;
     font-size: 13px; 
     white-space: nowrap; 
 }
 
-#navbar-top ul li a:hover {
-    color: #ffb300;
-}
- 
-
 /* Tambahkan sedikit hover effect */
-#navbar-top ul li a:hover {
-    color: #ffb300; /* Kuning saat di-hover */
+#main-nav > ul > li > a:hover {
+    color: #ffb300;
 }
 
 /* CATATAN PENTING: Penyesuaian Body */
@@ -77,10 +293,8 @@ body {
 /* Kita perlu menambahkan padding di body (atau di elemen pertama setelah header) agar konten tidak tertutup. */
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
     padding-top: 60px; /* Nilai padding harus sesuai dengan tinggi header Anda */
     background-color: #f4f4f4; 
-    color: #333;
 }
 
 /* Banner Selamat Datang (Warna latar gelap dengan foto gedung) */
@@ -89,7 +303,6 @@ body {
     /* PENTING: Gunakan background-image untuk gambar */
     background: url('backg.jpg') no-repeat center center/cover;
     
-    color: #fff;
     padding: 150px 5%; 
     min-height: 500px; /* Tambahkan tinggi agar gambar terlihat */
     position: relative;
@@ -119,23 +332,6 @@ body {
     text-align: left;
 }
 
-#welcome-banner h1 {
-    font-size: 24px;
-    font-weight: normal;
-    margin-bottom: 5px;
-}
-
-#welcome-banner h2 {
-    color: #ffb300; /* Warna kuning khas */
-    font-size: 48px;
-    margin-top: 0;
-    margin-bottom: 20px;
-}
-
-#welcome-banner p {
-    font-size: 16px;
-    line-height: 1.6;
-}
 /* Statistik Bar (Bagian Kuning) */
 #stats-bar {
     display: flex;
@@ -166,13 +362,34 @@ body {
 }
 
 /* Identitas Sekolah */
+/* Gaya untuk Identitas Sekolah (sesuai screenshot 143334.png) */
 #school-identity {
+    position: relative;
+    padding-left: 5%; /* Padding untuk konten utama */
+    padding-top: 40px;
     margin-bottom: 40px;
+    max-width: 1200px;
+    margin: 40px auto;
 }
 
-.identity-data td {
-    padding: 8px 0;
-    border-bottom: 1px solid #eee;
+/* Judul Samping "Kepala..." */
+.sidebar-title {
+    position: absolute;
+    top: 0; 
+    left: 50%; /* Posisikan kira-kira di tengah samping */
+    transform: translateX(-50%);
+    font-weight: bold;
+    color: #333;
+    /* Penempatan Teks "Kepala SMK Negeri 7 Batam" di kiri tengah konten */
+    left: 200px; 
+    top: 50px;
+}
+
+#school-identity h3 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 50px; 
+    margin-bottom: 20px;
 }
 
 .tabs button {
@@ -180,13 +397,35 @@ body {
     border: none;
     padding: 10px 15px;
     cursor: pointer;
-    font-weight: bold;
+    font-weight: normal;
     color: #999;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s;
 }
 
+/* Gaya untuk Tab yang Sedang Aktif */
 .tabs button.active {
     color: #333;
-    border-bottom: 2px solid #ffb300;
+    font-weight: bold;
+    border-bottom: 2px solid #ffb300; /* Garis kuning/oranye di bawah tab aktif */
+}
+
+.identity-data td {
+    padding: 8px 0;
+    padding-right: 40px; /* Jarak antara kolom data */
+    border-bottom: none; /* Hapus border di bawah baris */
+}
+
+/* PENTING: Kelas untuk menyembunyikan tab yang tidak aktif */
+.tab-content {
+    display: none;
+}
+
+/* Kelas untuk menampilkan tab yang aktif */
+.tab-content.active {
+    display: table; /* Gunakan display table karena elemennya adalah table */
+    width: 100%;
+    margin-top: 20px;
 }
 
 /* Banner Gabung (Screenshot 143347.jpg) */
@@ -213,194 +452,66 @@ body {
     height: 3px;
     background-color: #ffb300;
 }
-
-/* Gaya untuk bagian BERBUDAYA dan INOVATIF */
-#pusat-keunggulan {
-    margin-top: 60px;
-    padding-bottom: 60px;
+/* ============================================== */
+/* MEDIA QUERIES (MOBILE STYLES) - FOKUS KE TENGAH */
+/* ============================================== */
+#pusat-keunggulan-exact {
     text-align: center;
+    padding: 60px 20px;
+    max-width: 1200px; /* Batasi lebar agar tidak terlalu melebar di layar besar */
+    margin: 0 auto; /* Memusatkan blok section */
 }
 
-.top-titles {
-    display: flex;
-    justify-content: space-around;
-    padding: 0 5%;
-    margin-bottom: 40px;
-}
-
-.title-item h2 {
-    font-size: 32px;
-    font-weight: bold;
-    color: #333;
-    padding-bottom: 5px;
-    border-bottom: 3px solid #ffb300; /* Garis kuning/oranye di bawah judul */
-    display: inline-block;
-}
-
-.title-item:last-child h2 {
-    /* Hanya untuk judul INOVATIF, menyesuaikan posisi garis */
-    border-color: #ffb300; 
-}
-
-.title-item p {
-    font-size: 14px;
-    color: #666;
-}
-
-/* Gaya untuk Judul Atas (Berbudaya & Inovatif) */
+/* Bagian judul atas (BERBUDAYA & INOVATIF) */
 .top-titles-exact {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px 5%;
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start; /* Agar elemen sejajar di atas */
-    position: relative;
-}
-
-.date-info {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    font-size: 12px;
-    color: #666;
-}
-
-.title-item {
-    text-align: center;
-    padding-top: 50px; /* Jarak dari atas */
-}
-
-.title-item.inovatif {
-    margin-left: auto; /* Memastikan INOVATIF di kanan */
-    padding-right: 20px;
+    flex-direction: column; /* Mengubah arah menjadi vertikal (atas-bawah) */
+    align-items: center; /* Memusatkan item secara horizontal */
+    gap: 40px; /* Mengatur jarak vertikal antar judul */
+    margin-bottom: 60px;
 }
 
 .title-item h2 {
-    font-size: 32px;
-    font-weight: bold;
-    color: #333;
-    padding-bottom: 5px;
-    /* Menghilangkan garis di bawah BERBUDAYA (tidak ada di screenshot baru) */
-}
-.title-item.inovatif h2 {
-    /* Menambahkan font kecil berwarna oranye di INOVATIF */
-    color: #333;
+    font-size: 36px;
+    font-weight: 900;
+    margin-bottom: 5px;
 }
 
 .title-item p {
     font-size: 14px;
-    color: #666;
-    margin-top: 5px;
+    color: #777;
+    margin: 0;
 }
 
-
-/* Area Utama dengan Latar Biru Muda (mirip screenshot) */
+/* Bagian Konsentrasi Keahlian */
 .keahlian-main-area {
-    background-color: #f7f9fd; /* Warna biru muda yang lembut */
-    padding: 30px 0;
+    margin-top: 40px;
 }
 
 .title-left {
-    font-size: 20px;
-    font-weight: bold;
-    color: #333;
-    padding-left: 5%;
-    margin-top: 0;
-    margin-bottom: 30px;
+    font-size: 30px;
+    font-weight: 900;
+    margin-bottom: 40px;
 }
 
-/* Pengaturan Grid untuk Tiga Kolom (Kiri, Divider, Kanan) */
 .keahlian-grid {
-    display: grid;
-    /* Menggunakan 3 kolom: 45% (kiri), 5% (divider), 50% (kanan) */
-    grid-template-columns: 45% 5% 50%; 
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.grid-left {
-    padding-left: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    text-align: left; /* Kembalikan ke rata kiri untuk konten di dalam grid */
 }
 
 .grid-left h4 {
-    font-size: 22px;
-    font-weight: bold;
-    color: #333;
-    margin-top: 0;
-    margin-bottom: 10px;
+    font-size: 26px;
+    font-weight: 800;
+    margin-bottom: 30px;
+    text-align: center; /* Judul rencana aksi tetap di tengah */
 }
 
-.action-plan {
-    padding-top: 15px; /* Jarak dari Rencana Aksi */
-}
-
-.action-plan h5 {
-    font-style: italic;
-    color: #666;
-    font-weight: normal;
-    margin-bottom: 15px;
-}
-
-/* Gaya List Item */
-.action-plan ul {
-    list-style: none;
-    padding-left: 0;
-}
-
-.action-plan ul li {
-    font-size: 16px;
-    color: #555;
-    margin-bottom: 10px;
-    position: relative;
-    padding-left: 18px;
-}
-
-/* Bullet Point Kuning/Oranye */
-.action-plan ul li::before {
-    content: ''; 
-    background-color: #ffb300; /* Oranye/Kuning */
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    position: absolute;
-    left: 0;
-    top: 7px;
-}
-
-/* Garis Pembatas Vertikal di Tengah */
 .grid-center-divider {
-    position: relative;
+    display: none; /* Kita sembunyikan divider agar lebih simpel */
 }
-
-.grid-center-divider::before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: 0;
-    /* Garis harus panjang dari atas ke bawah */
-    bottom: -150px; /* Diperpanjang ke bawah agar terlihat seperti screenshot */
-    width: 2px;
-    background-color: #ffb300; /* Garis Oranye/Kuning */
-    transform: translateX(-50%);
-}
-
-.divider-text-unggulan {
-    position: absolute; /* Menggunakan absolute agar posisinya tepat */
-    top: 50px; /* Jarak dari atas */
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #fff; /* Latar putih agar menutupi garis */
-    padding: 10px 5px;
-    font-weight: bold;
-    color: #333;
-    text-align: center;
-    line-height: 1.4;
-    font-size: 14px;
-    white-space: nowrap; /* Mencegah teks terpotong */
-}
-
-
 
 /* Gaya untuk Judul "Berita Terbaru" (diambil dari kode sebelumnya) */
 #latest-news-join {
@@ -570,26 +681,15 @@ body {
     margin: 0 auto;
 }
 
-.map-placeholder {
-    background-color: #444;
-    min-height: 300px;
-    text-align: center;
-    padding-top: 140px;
-    color: #ccc;
-    font-style: italic;
-}
-
-.map-area {
-    padding: 20px 5%;
-}
-
-.map-placeholder {
-    background-color: #444;
-    min-height: 300px;
-    text-align: center;
-    padding-top: 140px;
-    color: #ccc;
-    font-style: italic;
+/* Gaya untuk iframe Google Maps yang baru ditambahkan */
+.google-map {
+    border: 0; /* Menghilangkan border default dari iframe */
+    width: 100%; /* Peta akan mengisi seluruh lebar kontainer .map-area */
+    height: 450px; /* Atur tinggi peta sesuai keinginan (sesuai nilai di HTML sebelumnya) */
+    /* Menambahkan sedikit lengkungan agar serasi dengan desain */
+    border-radius: 15px; 
+    /* Memberi efek bayangan agar terlihat lebih menonjol */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .copyright {
