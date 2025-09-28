@@ -24,6 +24,7 @@ body {
     font-size: 24px;
     font-weight: 400; /* Sedang, tidak terlalu tebal */
     margin-bottom: 5px;
+    color:white;
 }
 
 #welcome-banner h2 {
@@ -41,6 +42,7 @@ body {
     font-size: 16px;
     line-height: 1.6;
     font-weight: 400;
+    color:white;
 }
 
 /* Garis vertikal kuning di samping teks (sesuai screenshot 143326.jpg) */
@@ -700,4 +702,5 @@ body {
 }
 
 /* Tambahkan media queries untuk responsif, jika diperlukan */
+
 /* @media (max-width: 768px) { ... } */
